@@ -1,6 +1,5 @@
 package com.taskmanager.dto;
 
-
 import com.taskmanager.enums.TaskStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
