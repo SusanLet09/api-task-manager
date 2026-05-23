@@ -3,6 +3,8 @@ package com.taskmanager.service;
 import com.taskmanager.dto.TaskRequestDTO;
 import com.taskmanager.dto.TaskResponseDTO;
 import com.taskmanager.entity.Task;
+import com.taskmanager.exceptions.TaskNotFoundException;
+import com.taskmanager.mappers.TaskMapper;
 import com.taskmanager.repository.TaskRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +20,12 @@ import java.util.List;
 public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
+    private final TaskMapper taskMapper;
+
 
     @Override
     public List<TaskResponseDTO> getAllTasks() {
+        log.info("Getting all tasks...");
 
         return taskRepository.findAll()
                 .stream()
@@ -30,9 +35,10 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskResponseDTO getTaskById(Long id) {
+        log.info("Getting task with id {}", id);
 
         Task task = taskRepository.findById(id)
-                .orElseThrow(() -> new TaskNotFoundException("Task not found with id: " + id));
+                .orElseThrow(() -> new  TaskNotFoundException(id));
 
         return taskMapper.toResponse(task);
     }
@@ -76,7 +82,6 @@ public class TaskServiceImpl implements TaskService {
 
     }
     private Task obtenerTask(Long id) {
-        return taskRepository.findById(id)
-                .orElseThrow(() -> new TaskNotFoundException("Task not found with id: " + id));
+        return taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException(id));
     }
 }
