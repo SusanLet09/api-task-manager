@@ -32,6 +32,8 @@ La aplicación fue estructurada siguiendo una arquitectura en capas para separar
 - Entities → modelo de datos
 - DTOs → transferencia de datos
 - Exceptions → manejo global de errores
+- Mappers → conversión entre Entity ↔ DTO
+- Enums → valores fijos (PENDING, IN_PROGRESS, COMPLETED)
 
 ## Patrones implementados
 
