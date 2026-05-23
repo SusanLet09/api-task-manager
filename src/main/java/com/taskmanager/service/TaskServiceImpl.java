@@ -3,6 +3,7 @@ package com.taskmanager.service;
 import com.taskmanager.dto.TaskRequestDTO;
 import com.taskmanager.dto.TaskResponseDTO;
 import com.taskmanager.entity.Task;
+import com.taskmanager.exceptions.TaskNotFoundException;
 import com.taskmanager.repository.TaskRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
